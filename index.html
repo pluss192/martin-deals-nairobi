@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Martin Gitare Deals | Verified Pre-Owned Nairobi</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #22c55e; /* WhatsApp / M-Pesa Green */
+      --accent-dark: #16a34a;
+      --gold: #f59e0b;
+      --sold: #ef4444;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 80px; }
+
+    /* Top Trust Header */
+    header {
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      padding: 20px 16px 14px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand-row { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
+    .brand h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; }
+    .brand span { color: var(--accent); }
+    .badge {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .subtext { max-width: 900px; margin: 6px auto 0; font-size: 0.82rem; color: var(--muted); }
+
+    /* Search & Filter Bar */
+    .controls { max-width: 900px; margin: 14px auto 0; display: flex; flex-direction: column; gap: 10px; }
+    input[type="search"] {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #0b1120;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+    .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .tab.active { background: var(--accent); color: #052e16; border-color: var(--accent); font-weight: 700; }
+
+    /* Grid */
+    .container { max-width: 900px; margin: 16px auto; padding: 0 16px; }
+    .stats-bar { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+
+    /* Product Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.15s ease;
+    }
+    .card.is-sold { opacity: 0.65; }
+    .img-wrap { position: relative; height: 190px; background: #0b1120; overflow: hidden; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .tag-condition {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(15, 23, 42, 0.88);
+      color: var(--gold);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 4px 9px; border-radius: 6px;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .sold-banner {
+      position: absolute; inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 900; color: var(--sold);
+      letter-spacing: 2px; border: 2px solid var(--sold); margin: 16px; border-radius: 8px;
+      transform: rotate(-6deg);
+    }
+
+    .card-body { padding: 14px; display: flex; flex-direction: column; flex: 1; }
+    .category-label { font-size: 0.72rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; }
+    .title { font-size: 1.02rem; font-weight: 700; margin: 4px 0; line-height: 1.3; }
+    .specs { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; flex: 1; }
+    .price-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+    .price { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+    .location { font-size: 0.75rem; color: var(--muted); }
+
+    /* Action Buttons */
+    .actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .btn-buy {
+      background: var(--accent); color: #052e16;
+      text-decoration: none; font-weight: 800; font-size: 0.88rem;
+      padding: 11px; border-radius: 9px; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-buy:hover { background: var(--accent-dark); color: #fff; }
+    .btn-buy.disabled { background: #334155; color: #94a3b8; pointer-events: none; }
+    .btn-share {
+      background: #0b1120; color: var(--text); border: 1px solid var(--border);
+      padding: 0 12px; border-radius: 9px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+    }
+
+    /* Demo Owner Toggle (Selling the Dream) */
+    .demo-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #0b1120; border-top: 1px solid var(--border);
+      padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; z-index: 60;
+    }
+    .demo-btn {
+      background: var(--gold); color: #000; border: none;
+      padding: 6px 12px; border-radius: 6px; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <div class="brand">
+      <h1>MARTIN GITARE <span>DEALS</span></h1>
+    </div>
+    <span class="badge">● LIVE STOCK NAIROBI</span>
+  </div>
+  <p class="subtext">Clean pre-owned & direct deals • First-to-pay reserves • Nairobi CBD & Rider Delivery</p>
+
+  <div class="controls">
+    <input type="search" id="searchInput" placeholder="Search phones, TVs, furniture, appliances..." oninput="renderCatalog()" />
+    <div class="tabs" id="categoryTabs">
+      <button class="tab active" onclick="setCategory('All', this)">All Stock</button>
+      <button class="tab" onclick="setCategory('Electronics', this)">Electronics</button>
+      <button class="tab" onclick="setCategory('Home & Living', this)">Home & Living</button>
+      <button class="tab" onclick="setCategory('Phones & Laptops', this)">Phones & Laptops</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="stats-bar">
+    <span id="countLabel">Showing available deals</span>
+    <span>Tap item to claim on WhatsApp</span>
+  </div>
+  <div class="grid" id="catalogGrid"></div>
+</main>
+
+<!-- Interactive Demo Bar so Martin can test marking items SOLD -->
+<div class="demo-bar">
+  <span><strong>Preview Mode:</strong> Tap an item's status to test marking it SOLD</span>
+  <button class="demo-btn" onclick="toggleAdminMode()" id="adminBtn">Test Seller Controls</button>
+</div>
+
+<script>
+  // 1. REPLACE WITH MARTIN'S REAL WHATSAPP NUMBER (Format: 2547XXXXXXXX)
+  const SELLER_WHATSAPP = "254700000000";
+
+  // 2. SAMPLE INVENTORY (Replace with 4-6 real items from Martin's WhatsApp Status)
+  let inventory = [
+    {
+      id: 1,
+      name: "Samsung 55\" 4K Smart UHD TV",
+      category: "Electronics",
+      condition: "9.5/10 Clean",
+      price: 42000,
+      location: "Nairobi CBD / Delivery",
+      specs: "Original remote, zero scratches, Netflix/YouTube ready, tested on pickup.",
+      image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80",
+      sold: false
+    },
+    {
+      id: 2,
+      name: "iPhone 13 Pro 256GB (Graphite)",
+      category: "Phones & Laptops",
+      condition: "89% Battery Health",
+      price: 68500,
+      location: "Westlands / CBD",
+      specs: "Factory unlocked, FaceID working, clean body, free 20W charger included.",
+      image: "https://images.unsplash.com/photo-1632661674596-df8be070a5c5?auto=format&fit=crop&w=600&q=80",
+      sold: false
+    },
+    {
+      id: 3,
+      name: "5-Seater L-Shape Velvet Sofa",
+      category: "Home & Living",
+      condition: "Like New",
+      price: 34000,
+      location: "Kilimani Pickup",
+      specs: "High-density cushions, stain-resistant fabric, comes with 4 throw pillows.",
+      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
+      sold: false
+    },
+    {
+      id: 4,
+      name: "HP EliteBook 840 G7 Core i7",
+      category: "Phones & Laptops",
+      condition: "Ex-UK Grade A",
+      price: 39000,
+      location: "Nairobi CBD",
+      specs: "16GB RAM, 512GB SSD, backlit keyboard, 5+ hrs battery, original Type-C charger.",
+      image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80",
+      sold: true
+    }
+  ];
+
+  let activeCategory = "All";
+  let adminMode = false;
+
+  function setCategory(cat, btn) {
+    activeCategory = cat;
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    btn.classList.add("active");
+    renderCatalog();
+  }
+
+  function toggleAdminMode() {
+    adminMode = !adminMode;
+    document.getElementById("adminBtn").textContent = adminMode ? "Done Testing" : "Test Seller Controls";
+    renderCatalog();
+  }
+
+  function toggleSold(id) {
+    const item = inventory.find(i => i.id === id);
+    if (item) {
+      item.sold = !item.sold;
+      renderCatalog();
+    }
+  }
+
+  function shareItem(name, price) {
+    const text = `Check out this deal from Martin Gitare: ${name} going for KES ${price.toLocaleString()}. View live stock here: ${window.location.href}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+  }
+
+  function renderCatalog() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const grid = document.getElementById("catalogGrid");
+
+    const filtered = inventory.filter(item => {
+      const matchesCat = activeCategory === "All" || item.category === activeCategory;
+      const matchesSearch = item.name.toLowerCase().includes(query) || item.specs.toLowerCase().includes(query);
+      return matchesCat && matchesSearch;
+    });
+
+    const availableCount = filtered.filter(i => !i.sold).length;
+    document.getElementById("countLabel").textContent = `${availableCount} available (${filtered.length} total)`;
+
+    grid.innerHTML = filtered.map(item => {
+      const waMessage = `Hi Martin! I want to claim the *${item.name}* listed at *KES ${item.price.toLocaleString()}*. Is it ready for pickup/delivery today?`;
+      const waLink = `https://wa.me/${SELLER_WHATSAPP}?text=${encodeURIComponent(waMessage)}`;
+
+      return `
+        <div class="card ${item.sold ? "is-sold" : ""}">
+          <div class="img-wrap">
+            <img src="${item.image}" alt="${item.name}" loading="lazy" />
+            <span class="tag-condition">${item.condition}</span>
+            ${item.sold ? `<div class="sold-banner">SOLD</div>` : ""}
+          </div>
+          <div class="card-body">
+            <div class="category-label">${item.category}</div>
+            <div class="title">${item.name}</div>
+            <div class="specs">${item.specs}</div>
+            <div class="price-row">
+              <span class="price">KES ${item.price.toLocaleString()}</span>
+              <span class="location">📍 ${item.location}</span>
+            </div>
+            <div class="actions">
+              ${
+                adminMode
+                  ? `<button class="demo-btn" style="width:100%;padding:11px;" onclick="toggleSold(${item.id})">
+                      ${item.sold ? "Mark Available" : "Mark as SOLD"}
+                     </button>`
+                  : `<a href="${waLink}" target="_blank" class="btn-buy ${item.sold ? "disabled" : ""}">
+                      ${item.sold ? "Claimed / Sold" : "Claim on WhatsApp"}
+                     </a>`
+              }
+              <button class="btn-share" onclick="shareItem('${item.name.replace(/'/g, "\\'")}', ${item.price})" title="Forward to a friend">Share</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  renderCatalog();
+</script>
+</body>
+</html>
