@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nairobi Comfort Furnishings — Quality Leather & Recliner Sofas</title>
+  <title>Martin Deals Nairobi — Luxury Furniture, Decor & Commercial Equipment</title>
   <style>
     :root {
-      --primary: #1c1917;      /* Warm Charcoal */
-      --accent: #b45309;       /* Rich Amber Wood */
+      --primary: #0f172a;
+      --accent: #b45309;
       --accent-hover: #92400e;
       --whatsapp: #16a34a;
       --whatsapp-hover: #15803d;
-      --bg-light: #fafaf9;
+      --bg-light: #f8fafc;
       --white: #ffffff;
-      --text-dark: #292524;
-      --text-muted: #57534e;
-      --border: #e7e5e4;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: system-ui, -apple-system, sans-serif;
       color: var(--text-dark);
@@ -28,12 +29,11 @@
 
     .container {
       width: 100%;
-      max-width: 1040px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 1.25rem;
     }
 
-    /* Header */
     header {
       background: var(--primary);
       color: var(--white);
@@ -55,29 +55,31 @@
       letter-spacing: -0.02em;
     }
 
+    .brand span { color: #f59e0b; }
+
     .nav-btn {
       background: var(--whatsapp);
       color: var(--white);
       text-decoration: none;
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.1rem;
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
     }
 
-    /* Hero */
     .hero {
-      background: var(--bg-light);
-      padding: 3.5rem 0;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: var(--white);
+      padding: 4rem 0 4.5rem;
       text-align: center;
-      border-bottom: 1px solid var(--border);
     }
 
     .badge {
       display: inline-block;
-      background: #fef3c7;
-      color: var(--accent-hover);
-      padding: 0.3rem 0.9rem;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      padding: 0.35rem 1rem;
       border-radius: 9999px;
       font-size: 0.8rem;
       font-weight: 700;
@@ -86,79 +88,109 @@
 
     .hero h1 {
       font-size: 2rem;
-      color: var(--primary);
       line-height: 1.2;
-      margin-bottom: 0.85rem;
+      max-width: 760px;
+      margin: 0 auto 1rem;
     }
 
     .hero p {
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 1.75rem;
+      color: #cbd5e1;
+      max-width: 600px;
+      margin: 0 auto 2rem;
     }
 
-    /* Catalog Grid */
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
     section { padding: 3.5rem 0; }
 
-    .section-title {
+    .section-header {
       text-align: center;
-      font-size: 1.65rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
       color: var(--primary);
       margin-bottom: 0.4rem;
     }
 
-    .section-sub {
-      text-align: center;
-      color: var(--text-muted);
-      margin-bottom: 2.25rem;
+    .section-header p { color: var(--text-muted); }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 0.55rem 1.15rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
     }
 
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.75rem;
     }
 
-    .product-card {
+    .card {
       border: 1px solid var(--border);
       border-radius: 1rem;
       overflow: hidden;
       background: var(--white);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .product-card img {
+    .card.hidden { display: none; }
+
+    .card img {
       width: 100%;
       height: 240px;
       object-fit: cover;
       display: block;
-      background: #e7e5e4;
+      background: #e2e8f0;
     }
 
     .card-body { padding: 1.5rem; }
 
-    .tag {
+    .cat-tag {
       font-size: 0.75rem;
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--accent);
       letter-spacing: 0.05em;
+      color: var(--accent);
     }
 
     .card-body h3 {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       color: var(--primary);
-      margin: 0.25rem 0 0.5rem;
-    }
-
-    .price {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
+      margin: 0.3rem 0 0.5rem;
     }
 
     .card-body p {
@@ -167,7 +199,7 @@
       margin-bottom: 1.5rem;
     }
 
-    .btn-order {
+    .btn-wa {
       display: block;
       width: 100%;
       text-align: center;
@@ -175,35 +207,24 @@
       color: var(--white);
       text-decoration: none;
       font-weight: 700;
-      padding: 0.9rem;
+      padding: 0.85rem;
       border-radius: 9999px;
       transition: background 0.2s;
     }
 
-    .btn-order:hover { background: var(--whatsapp-hover); }
+    .btn-wa:hover { background: var(--whatsapp-hover); }
 
-    /* Info Strip */
-    .info-strip {
+    .cta-box {
       background: var(--primary);
       color: var(--white);
-      border-radius: 1rem;
-      padding: 2.25rem 1.5rem;
+      border-radius: 1.25rem;
+      padding: 3rem 1.5rem;
       text-align: center;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
     }
 
-    .info-strip h2 { margin-bottom: 0.5rem; font-size: 1.5rem; }
-    .info-strip p { color: #d6d3d1; margin-bottom: 1.25rem; }
-
-    .btn-map {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 9999px;
-      font-weight: 600;
-    }
+    .cta-box h2 { font-size: 1.75rem; margin-bottom: 0.65rem; }
+    .cta-box p { color: #cbd5e1; max-width: 540px; margin: 0 auto 1.75rem; }
 
     footer {
       text-align: center;
@@ -213,9 +234,13 @@
       border-top: 1px solid var(--border);
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 680px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
-      .hero h1 { font-size: 2.65rem; }
+      .hero h1 { font-size: 2.75rem; }
+    }
+
+    @media (min-width: 980px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
 </head>
@@ -223,62 +248,172 @@
 
   <header>
     <div class="container nav">
-      <div class="brand">Nairobi Comfort Sofas</div>
-      <a href="https://wa.me/254795003674?text=Hello,%20I'd%20like%20to%20inquire%20about%20your%20sofa%20sets." target="_blank" class="nav-btn">WhatsApp Us</a>
+      <div class="brand">Martin Deals <span>Nairobi</span></div>
+      <a href="https://wa.me/254795003674?text=Hello%20Martin%20Deals%20Nairobi,%20I'd%20like%20to%20inquire%20about%20items%20in%20your%20catalog." target="_blank" class="nav-btn">Chat on WhatsApp</a>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <span class="badge">Custom Made in Nairobi • Countrywide Delivery</span>
-      <h1>Luxury Leather & Recliner Sofa Sets Built for Comfort</h1>
-      <p>Browse our latest showroom pieces. Custom colors, durable high-density cushions, and fast delivery straight to your living room.</p>
-      <a href="#catalog" class="btn-map">Browse Available Sets</a>
+      <span class="badge">Nairobi Showroom & Direct Supply • Countrywide Delivery</span>
+      <h1>Luxury Home Furnishings, Decor & Commercial Equipment</h1>
+      <p>From executive recliner suites and statement mirrors to café espresso machines and backup generators—sourced for quality and delivered countrywide.</p>
+      <a href="#catalog" class="btn-primary">Browse Available Stock</a>
     </div>
   </section>
 
   <section id="catalog">
     <div class="container">
-      <h2 class="section-title">Featured Sofa Sets</h2>
-      <p class="section-sub">Tap any set below to order or request custom colors on WhatsApp.</p>
+      <div class="section-header">
+        <h2>Featured Inventory</h2>
+        <p>Filter by category and tap any item to request pricing or availability on WhatsApp.</p>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterItems('all', this)">All Items (10)</button>
+        <button class="filter-btn" onclick="filterItems('sofas', this)">Luxury Sofas</button>
+        <button class="filter-btn" onclick="filterItems('decor', this)">Tables & Mirrors</button>
+        <button class="filter-btn" onclick="filterItems('commercial', this)">Commercial & Power</button>
+      </div>
 
       <div class="grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-          <img src="sofa-set-1.jpg" alt="Cream Leather 3+2 Sofa Set">
+        <!-- 1. Grey Recliner Suite -->
+        <div class="card" data-category="sofas">
+          <img src="Gemini_Generated_Image_7zypah7zypah7zyp.jfif" alt="Charcoal Grey Recliner Sofa Suite">
           <div class="card-body">
-            <span class="tag">Best Seller • 5 Seater (3+2)</span>
-            <h3>Executive Cream Leather 3+2 Set</h3>
-            <div class="price">KES 65,000</div>
-            <p>Plush cream leather finish with wide padded armrests and deep seating. Available in cream, brown, grey, or black.</p>
-            <a href="https://wa.me/254795003674?text=Hi,%20I'm%20interested%20in%20the%20Executive%20Cream%20Leather%203+2%20Set%20(KES%2065,000)." target="_blank" class="btn-order">Order on WhatsApp</a>
+            <span class="cat-tag">Luxury Sofas • 3+2+1 Set</span>
+            <h3>Charcoal Grey Recliner Suite with Console</h3>
+            <p>Plush textured fabric 6-seater lounge set featuring smooth manual recliners and built-in center cupholders.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Charcoal%20Grey%20Recliner%20Suite." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
           </div>
         </div>
 
-        <!-- Product 2 -->
-        <div class="product-card">
-          <img src="recliner-set-2.jpg" alt="Full Recliner Lounge Suite">
+        <!-- 2. Tan / Camel Recliner Suite -->
+        <div class="card" data-category="sofas">
+          <img src="Gemini_Generated_Image_7zypah7zypah7zyp (1).jfif" alt="Warm Tan Recliner Sofa Suite">
           <div class="card-body">
-            <span class="tag">VIP Comfort • Full Recliner Suite</span>
-            <h3>Deluxe Cream Recliner Lounge Set</h3>
-            <div class="price">KES 95,000</div>
-            <p>Heavy-duty smooth reclining mechanism with full footrest extension and lumbar support. Built for ultimate home relaxation.</p>
-            <a href="https://wa.me/254795003674?text=Hi,%20I'm%20interested%20in%20the%20Deluxe%20Cream%20Recliner%20Lounge%20Set%20(KES%2095,000)." target="_blank" class="btn-order">Order on WhatsApp</a>
+            <span class="cat-tag">Luxury Sofas • 3+2+1 Set</span>
+            <h3>Warm Camel Corduroy Recliner Suite</h3>
+            <p>Soft-touch ribbed upholstery in warm tan with full footrest extension, center storage console, and high-back support.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Warm%20Camel%20Recliner%20Suite." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 3. Navy Blue Recliner Suite -->
+        <div class="card" data-category="sofas">
+          <img src="Gemini_Generated_Image_7zypah7zypah7zyp (2).jfif" alt="Royal Navy Recliner Sofa Suite">
+          <div class="card-body">
+            <span class="cat-tag">Luxury Sofas • 3+2+1 Set</span>
+            <h3>Royal Navy Blue Recliner Lounge Set</h3>
+            <p>Deep navy statement suite engineered for durability and everyday comfort, complete with dual cupholders and recliners.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Royal%20Navy%20Blue%20Recliner%20Set." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 4. Nesting Marble Coffee Tables -->
+        <div class="card" data-category="decor">
+          <img src="Gemini_Generated_Image_r16r23r16r23r16r.jfif" alt="3-Piece Gold and Black Marble Nesting Tables">
+          <div class="card-body">
+            <span class="cat-tag">Living Room Decor</span>
+            <h3>3-Piece Gold & Black Marble Nesting Tables</h3>
+            <p>Modern tiered round coffee tables featuring brushed gold fluted metal frames and black-and-gold veined marble tops.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%203-Piece%20Gold%20%26%20Black%20Marble%20Nesting%20Tables." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 5. Crushed Diamond Oval Mirrors -->
+        <div class="card" data-category="decor">
+          <img src="Gemini_Generated_Image_c9p6mjc9p6mjc9p6.jfif" alt="Full-Length Crushed Crystal Oval Mirrors">
+          <div class="card-body">
+            <span class="cat-tag">Statement Mirrors</span>
+            <h3>Full-Length Crushed Crystal Oval Mirrors</h3>
+            <p>Floor-standing luxury oval mirrors framed with sparkling crushed crystal inlay and brushed gold trim. Ideal for homes and salons.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Crushed%20Crystal%20Oval%20Mirrors." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 6. Arch & Beaded Floor Mirrors -->
+        <div class="card" data-category="decor">
+          <img src="Gemini_Generated_Image_lhd4hplhd4hplhd4.jfif" alt="Oversized Arch and Beaded Floor Mirrors">
+          <div class="card-body">
+            <span class="cat-tag">Statement Mirrors</span>
+            <h3>Oversized Arch & Beaded Frame Mirrors</h3>
+            <p>Architectural full-body dressing mirrors in silver beaded, antique bronze, and ornate geometric border finishes.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Oversized%20Arch%20%26%20Beaded%20Mirrors." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 7. Showroom Mirror Collection -->
+        <div class="card" data-category="decor">
+          <img src="Gemini_Generated_Image_u6ryb7u6ryb7u6ry.jfif" alt="Full-Length Showroom Dressing Mirrors">
+          <div class="card-body">
+            <span class="cat-tag">Statement Mirrors</span>
+            <h3>Designer Full-Body Dressing Mirrors</h3>
+            <p>Elegant tall standing mirrors crafted for bedrooms, boutiques, and beauty studios. Available in multiple finishes.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20please%20share%20the%20price%20for%20the%20Designer%20Full-Body%20Dressing%20Mirrors." target="_blank" class="btn-wa">Ask Price on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 8. 30kVA Cummins Generator -->
+        <div class="card" data-category="commercial">
+          <img src="Gemini_Generated_Image_k3kbhbk3kbhbk3kb.jfif" alt="30kVA Cummins Silent Diesel Generator">
+          <div class="card-body">
+            <span class="cat-tag">Power Solutions</span>
+            <h3>30kVA Cummins Soundproof Generator</h3>
+            <p>Heavy-duty weather-enclosed standby diesel generator with digital control panel for businesses, apartments, and institutions.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20I'd%20like%20a%20quote%20for%20the%2030kVA%20Cummins%20Generator." target="_blank" class="btn-wa">Request Quote on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 9. Commercial Espresso Machine -->
+        <div class="card" data-category="commercial">
+          <img src="Gemini_Generated_Image_ggf3phggf3phggf3.jfif" alt="2-Group Commercial Espresso Machine">
+          <div class="card-body">
+            <span class="cat-tag">Café & Restaurant Equipment</span>
+            <h3>2-Group Commercial Espresso Coffee Machine</h3>
+            <p>Professional stainless steel and red two-group barista espresso machine with dual steam wands and pressure gauge.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20I'd%20like%20the%20price%20for%20the%202-Group%20Commercial%20Espresso%20Machine." target="_blank" class="btn-wa">Request Quote on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- 10. Industrial Axial Exhaust Blower -->
+        <div class="card" data-category="commercial">
+          <img src="Gemini_Generated_Image_1ni9ok1ni9ok1ni9.jfif" alt="Industrial Axial Ventilation Fan">
+          <div class="card-body">
+            <span class="cat-tag">Industrial Ventilation</span>
+            <h3>Heavy-Duty Industrial Axial Exhaust Fan</h3>
+            <p>High-airflow steel-cased ventilation blower engineered for commercial kitchens, warehouses, workshops, and factories.</p>
+            <a href="https://wa.me/254795003674?text=Hi%20Martin%20Deals%20Nairobi,%20I'd%20like%20a%20quote%20for%20the%20Industrial%20Axial%20Exhaust%20Fan." target="_blank" class="btn-wa">Request Quote on WhatsApp</a>
           </div>
         </div>
       </div>
 
-      <div class="info-strip">
-        <h2>Visit Our Workshop or Order Custom</h2>
-        <p>Want a different fabric, leather shade, or seating size (3+2+1 or L-shape)? Visit us or chat with our team.</p>
-        <a href="https://maps.google.com/?q=Nairobi,Kenya" target="_blank" class="btn-map">Open Location in Google Maps</a>
+      <div class="cta-box">
+        <h2>Looking for Specific Stock or Bulk Supply?</h2>
+        <p>Message Martin Deals Nairobi directly on WhatsApp for current prices, showroom viewing, or countrywide delivery arrangements.</p>
+        <a href="https://wa.me/254795003674?text=Hello%20Martin%20Deals%20Nairobi,%20I'm%20interested%20in%20your%20showroom%20catalog." target="_blank" class="btn-wa" style="display:inline-block; width:auto; padding:0.95rem 2rem;">Message on WhatsApp</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2026 Nairobi Comfort Sofas. Built by Pluscase.</p>
+    <p>&copy; 2026 Martin Deals Nairobi. Website preview built by Pluscase.</p>
   </footer>
+
+  <script>
+    function filterItems(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
